@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>多组散点图示例</title>
+    <script src="echarts.js"></script>
+</head>
+<body>
+<div id="chart" style="width: 600px;height: 400px;"></div>
+<script src="data.js"></script>
+<script>
+    var chart = echarts.init(document.getElementById('chart'));
+    var names=["A","B","C"];
+    console.log(data.A);
+    console.log(data.B);
+    console.log(data.C);
+    var option = {
+        xAxis: {
+            type: 'value',
+            min: 118.259,
+            max: 118.359
+        },
+        yAxis: {
+            type: 'value',
+            min: 24.555,
+            max: 24.655
+        },
+        series: [
+            {
+                name: 'data1',
+                type: 'scatter',
+                data: data.A,
+                itemStyle: {
+                    color: 'red'
+                }
+            },
+            {
+                name: 'data2',
+                type: 'scatter',
+                data: data.B,
+                itemStyle: {
+                    color: 'green'
+                }
+            },
+            {
+                name: 'data3',
+                type: 'scatter',
+                data: data.C,
+                itemStyle: {
+                    color: 'blue'
+                }
+            }
+        ]
+    };
+    for(let i=0;i<3;i++)
+        if(data.latest_distance[i]>10000)
+            alert(names[i] + " is getting too further!" +
+                "\nLatest location:" + data.latest_location[i] + " distance:" + data.latest_distance[i])
+    chart.setOption(option);
+</script>
+</body>
+</html>
